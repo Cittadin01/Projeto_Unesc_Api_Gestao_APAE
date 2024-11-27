@@ -1,0 +1,913 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Gestão APAE",
+    "description": "Feita por Vinicius Cittadin, Viktor Raulino Boeng, João Paulo Mizejeski, Luiz Fernando Ferreira",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9090/api"
+    }
+  ],
+  "paths": {
+    "/professores": {
+      "get": {
+        "summary": "Listar todos os professores",
+        "tags": ["Professores"],
+        "responses": {
+          "200": {
+            "description": "Lista de professores",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Professor"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cadastrar um novo professor",
+        "tags": ["Professores"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Professor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Professor cadastrado com sucesso"
+          }
+        }
+      }
+    },
+    "/professores/{id}": {
+      "get": {
+        "summary": "Buscar professor por ID",
+        "tags": ["Professores"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Professor encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Professor"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Professor não encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar professor por ID",
+        "tags": ["Professores"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Professor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Professor atualizado com sucesso"
+          },
+          "404": {
+            "description": "Professor não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar professor por ID",
+        "tags": ["Professores"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Professor deletado com sucesso"
+          },
+          "404": {
+            "description": "Professor não encontrado"
+          }
+        }
+      }
+    },
+    "/agendamentos": {
+      "get": {
+        "summary": "Listar todos os agendamentos",
+        "tags": ["Agendamentos"],
+        "responses": {
+          "200": {
+            "description": "Lista de agendamentos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Agendamento"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cadastrar um novo agendamento",
+        "tags": ["Agendamentos"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Agendamento"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Agendamento cadastrado com sucesso"
+          }
+        }
+      }
+    },
+ "/agendamentos/{id}": {
+      "get": {
+        "summary": "Buscar agendamento por ID",
+        "tags": ["Agendamentos"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agendamento encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agendamento"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Agendamento não encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar agendamento por ID",
+        "tags": ["Agendamentos"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Agendamento"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Agendamento atualizado com sucesso"
+          },
+          "404": {
+            "description": "Agendamento não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar agendamento por ID",
+        "tags": ["Agendamentos"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agendamento deletado com sucesso"
+          },
+          "404": {
+            "description": "Agendamento não encontrado"
+          }
+        }
+      }
+    },
+    "/alunos": {
+      "get": {
+        "summary": "Listar todos os alunos",
+        "tags": ["Alunos"],
+        "responses": {
+          "200": {
+            "description": "Lista de alunos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Aluno"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cadastrar um novo aluno",
+        "tags": ["Alunos"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Aluno"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Aluno cadastrado com sucesso"
+          }
+        }
+      }
+    },
+    "/alunos/{id}": {
+      "get": {
+        "summary": "Buscar aluno por ID",
+        "tags": ["Alunos"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Aluno encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aluno"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Aluno não encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar aluno por ID",
+        "tags": ["Alunos"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Aluno"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Aluno atualizado com sucesso"
+          },
+          "404": {
+            "description": "Aluno não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar aluno por ID",
+        "tags": ["Alunos"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Aluno deletado com sucesso"
+          },
+          "404": {
+            "description": "Aluno não encontrado"
+          }
+        }
+      }
+    },
+    "/eventos": {
+      "get": {
+        "summary": "Listar todos os eventos",
+        "tags": ["Eventos"],
+        "responses": {
+          "200": {
+            "description": "Lista de eventos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Evento"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cadastrar um novo evento",
+        "tags": ["Eventos"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Evento"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Evento cadastrado com sucesso"
+          }
+        }
+      }
+    },
+    "/eventos/{id}": {
+      "get": {
+        "summary": "Buscar evento por ID",
+        "tags": ["Eventos"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Evento encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Evento"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Evento não encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar evento por ID",
+        "tags": ["Eventos"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Evento"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Evento atualizado com sucesso"
+          },
+          "404": {
+            "description": "Evento não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar evento por ID",
+        "tags": ["Eventos"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Evento deletado com sucesso"
+          },
+          "404": {
+            "description": "Evento não encontrado"
+          }
+        }
+      }
+    },
+    "/profissionais": {
+      "get": {
+        "summary": "Listar todos os profissionais de saúde",
+        "tags": ["Profissionais de Saúde"],
+        "responses": {
+          "200": {
+            "description": "Lista de profissionais de saúde",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProfissionalSaude"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cadastrar um novo profissional de saúde",
+        "tags": ["Profissionais de Saúde"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfissionalSaude"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Profissional de saúde cadastrado com sucesso"
+          }
+        }
+      }
+    },
+    "/profissionais/{id}": {
+      "get": {
+        "summary": "Buscar profissional de saúde por ID",
+        "tags": ["Profissionais de Saúde"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profissional de saúde encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfissionalSaude"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Profissional de saúde não encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar profissional de saúde por ID",
+        "tags": ["Profissionais de Saúde"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfissionalSaude"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Profissional de saúde atualizado com sucesso"
+          },
+          "404": {
+            "description": "Profissional de saúde não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar profissional de saúde por ID",
+        "tags": ["Profissionais de Saúde"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profissional de saúde deletado com sucesso"
+          },
+          "404": {
+            "description": "Profissional de saúde não encontrado"
+          }
+        }
+      }
+    },
+    "/usuarios": {
+      "get": {
+        "summary": "Listar todos os usuários",
+        "tags": ["Usuários"],
+        "responses": {
+          "200": {
+            "description": "Lista de usuários",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Usuario"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cadastrar um novo usuário",
+        "tags": ["Usuários"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário cadastrado com sucesso"
+          }
+        }
+      }
+    },
+    "/usuarios/{id}": {
+      "get": {
+        "summary": "Buscar usuário por ID",
+        "tags": ["Usuários"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar usuário por ID",
+        "tags": ["Usuários"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuário atualizado com sucesso"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar usuário por ID",
+        "tags": ["Usuários"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário deletado com sucesso"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          }
+        }
+      }
+    }
+  },
+"components": {
+    "schemas": {
+      "Professor": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "disciplina": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "telefone": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ativo", "inativo"]
+          }
+        }
+      },
+      "Agendamento": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "especialidade": {
+            "type": "string"
+          },
+          "comentario": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "aluno": {
+            "type": "string"
+          },
+          "profissional": {
+            "type": "string"
+          }
+        }
+      },
+      "Evento": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "comentario": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "format": "date-time"            
+          }
+        }
+      },
+      "ProfissionalSaude": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "especialidade": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "telefone": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ativo", "inativo"]
+          }
+        }
+      },
+      "Aluno": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "idade": {
+            "type": "integer"
+          },
+          "pais": {
+            "type": "string"
+          },
+          "necessidades_especiais": {
+            "type": "string"
+          },
+          "telefone": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ativo", "inativo"]
+          }
+        }
+      },
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "usuario": {
+            "type": "string"
+          },
+          "pwd": {
+            "type": "string"
+          },
+          "nivel": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ativo", "inativo"]
+          }
+        }
+      }
+    }
+  }
+}
